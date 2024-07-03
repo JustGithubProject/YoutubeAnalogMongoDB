@@ -3,15 +3,14 @@ from pymongo import MongoClient
 from config import MONGODB_URI
 
 
-# Connect to MongoDB server
-client = MongoClient(MONGODB_URI)
 
-# Create a new one(db) or connect to an existing one
-db = client["youtube_database"]
+def connect_to_database():
+    # Connect to MongoDB server
+    client = MongoClient(MONGODB_URI)
 
-
-# Create a new on(collection) or connecto to an existing one
-user_collection = db["users"]
+    # Create a new one(db) or connect to an existing one
+    db = client["youtube_database"]
+    return db
 
 
 
