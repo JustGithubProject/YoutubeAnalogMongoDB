@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Игнорировать файлы окружения
+.env
+
+# Игнорировать файлы логов
+*.log
+
+# Игнорировать файлы конфигурации
+*.cfg
+*.conf
+
+# Игнорировать файлы временных данных
+*.bak
+*.swp
+*~.nfs*
+
+# Игнорировать кэш и временные директории
+.cache/
+.dist/
+.eggs/
+*.egg-info/
+env/
+venv/
+*.venv/
+*.env/
+
+# Игнорировать файлы конфигурации IDE
+.idea/
+.vscode/
+
+# Игнорировать файлы локализации
+*.mo
+*.pot
+
+# Игнорировать файлы отладочных данных и отчётов покрытия кода
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Игнорировать файлы для управления зависимостями
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Игнорировать файлы, создаваемые пользователем
+*.swp
+*.swo
+*.swn
