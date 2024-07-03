@@ -1,10 +1,10 @@
 from pymongo import MongoClient
 
+from config import MONGODB_URI
 
-uri = "mongodb://localhost:27017/"
 
 # Connect to MongoDB server
-client = MongoClient(uri)
+client = MongoClient(MONGODB_URI)
 
 # Create a new one(db) or connect to an existing one
 db = client["youtube_database"]

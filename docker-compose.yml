@@ -2,9 +2,9 @@ version: '3.1'
 
 services:
   mongodb:
-    image: mongo
+    image: mongo:latest
     restart: always
     ports:
-      - 27017:27017 # Слева порт на моем локальном хосте, справа порт внутри контейнера
+      - 27017:27017 
     volumes:
-      - ~/data:/data/db # Примонтируем локальную папку ~/data к папке /data/db в контейнере
+      - ~/data:/data/db 
