@@ -53,25 +53,25 @@ class Video:
             "comments": []
         }
     
-    def save(self) -> str:
-        video_data = self.to_dict()
-        result = self.video_collection.insert_one(video_data)
-        return result.inserted_id
+    # def save(self) -> str:
+    #     video_data = self.to_dict()
+    #     result = self.video_collection.insert_one(video_data)
+    #     return result.inserted_id
 
 
-    def find_by_title(self, title) -> dict:
-        return self.video_collection.find_one({"title": title})
+    # def find_by_title(self, title) -> dict:
+    #     return self.video_collection.find_one({"title": title})
     
-    def add_comment(self, comment: Comment):
-        update_result = self.videos_collection.update_one(
-        {"_id": comment.video_id},
-        {
-            "$push": {
-                "comments": comment.to_dict()
-            }
-        }
-        )
-        return update_result
+    # def add_comment(self, comment: Comment):
+    #     update_result = self.videos_collection.update_one(
+    #     {"_id": comment.video_id},
+    #     {
+    #         "$push": {
+    #             "comments": comment.to_dict()
+    #         }
+    #     }
+    #     )
+    #     return update_result
     
 
 
