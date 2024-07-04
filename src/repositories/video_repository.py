@@ -17,7 +17,7 @@ class VideoRepository:
         self.video_collection = self.db["videos"]
         self.video = video
     
-    def create_video(self):
+    def add_video(self):
         """Create a new video and add them to the database."""
         video_data = self.video.to_dict()
         result = self.video_collection.insert_one(video_data)
@@ -48,5 +48,11 @@ class VideoRepository:
         result = self.video_collection.delete_one({"_id": ObjectId(video_id)})
         
     
-
-
+    def add_comment(self, video_id: str, comment: Comment):
+        """Add comment to video"""
+        comment_data = comment.to_dict()
+        result = self.video_collection.update_one(
+            {"_id": ObjectId(video_id)},
+            {"$push": {"comments": comment_data}}
+        )
+        return result.modified_count > 0

@@ -1,6 +1,3 @@
-
-
-
 class User:
     """Model to interact with user_collection"""
     def __init__(

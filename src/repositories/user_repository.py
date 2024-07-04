@@ -13,7 +13,7 @@ class UserRepository:
         self.user_collection = self.db["users"]
         self.user = user
     
-    def create_user(self):
+    def add_user(self):
         """
         Create a new user and add them to the database.
         """
