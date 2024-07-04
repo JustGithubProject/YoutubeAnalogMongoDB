@@ -70,8 +70,9 @@ class Video:
                 "comments": comment.to_dict()
             }
         }
+        )
         return update_result
-)
+    
 
 
 

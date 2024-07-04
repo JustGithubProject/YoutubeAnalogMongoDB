@@ -1,0 +1,4 @@
+class VideoRepository:
+    pass
+
+
