@@ -9,11 +9,13 @@ class UserService:
         """
         self.user_repository = user_repository
     
+    
     def create_user(self, user: User):
         """
         Create a new user.
         """
         return self.user_repository.add_user(user)
+    
     
     def get_user_by_id(self, user_id: str):
         """
@@ -21,11 +23,13 @@ class UserService:
         """
         return self.user_repository.find_by_id(user_id)
     
+    
     def get_user_by_username(self, username: str):
         """
         Retrieve a user by their username.
         """
         return self.user_repository.find_by_username(username)
+    
     
     def update_user(self, user_id: str, new_user_data: User):
         """
@@ -33,11 +37,17 @@ class UserService:
         """
         return self.user_repository.update_user(user_id, new_user_data)
     
+    
     def delete_user(self, user_id: str):
         """
         Delete a user by their ID.
         """
         return self.user_repository.delete_user(user_id)
+    
+    
+    def get_all_users(self):
+        """Get all users"""
+        return self.user_repository.list_user()
     
         
            
