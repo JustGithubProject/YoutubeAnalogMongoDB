@@ -9,18 +9,17 @@ from models.videos import (
 
 
 class VideoRepository:
-    def __init__(self, video: Video):
+    def __init__(self):
         """
         Initialize the user repository.
         """
         self.db = connect_to_database()
         self.video_collection = self.db["videos"]
-        self.video = video
     
     
-    def add_video(self):
+    def add_video(self, video: Video):
         """Create a new video and add them to the database."""
-        video_data = self.video.to_dict()
+        video_data = video.to_dict()
         result = self.video_collection.insert_one(video_data)
         return result.inserted_id
     

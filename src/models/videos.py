@@ -22,8 +22,8 @@ class Comment:
     
     def to_dict(self):
         return {
-            "user_id": self.user_id,
             "video_id": self.video_id,
+            "user_id": self.user_id,
             "username": self.username,
             "comment": self.comment,
             "timestamp": self.timestamp
