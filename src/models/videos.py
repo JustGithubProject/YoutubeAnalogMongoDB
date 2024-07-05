@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from src.main import connect_to_database
+from config import connect_to_database
 
 
 

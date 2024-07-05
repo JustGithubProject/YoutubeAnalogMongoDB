@@ -1,6 +1,6 @@
 from bson.objectid import ObjectId
 
-from src.main import connect_to_database
+from config import connect_to_database
 
 from models.videos import (
     Video,

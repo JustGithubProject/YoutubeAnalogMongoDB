@@ -1,4 +1,4 @@
-from src.main import connect_to_database
+from config import connect_to_database
 from models.users import User
 
 from bson.objectid import ObjectId
