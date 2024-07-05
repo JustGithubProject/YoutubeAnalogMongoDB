@@ -9,6 +9,8 @@ services:
       .env
     depends_on:
       - mongodb
+    networks:
+      - my-network
 
 
   mongodb:
@@ -19,4 +21,11 @@ services:
     env_file:
       .env 
     volumes:
-      - ~/data:/data/db 
+      - ~/data:/data/db
+    networks:
+      - my-network
+
+
+networks:
+  my-network:
+    driver: bridge

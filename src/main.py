@@ -5,6 +5,7 @@ from routes import (
     video_router
 )
 
+from config import create_database_and_collections
 
 app = FastAPI(
     title="YoutubeAnalogAPI"
@@ -18,10 +19,8 @@ app.include_router(video_router.router)
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
-
-
-
+    
+    create_database_and_collections()
 
 
 

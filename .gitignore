@@ -53,3 +53,6 @@ pip-delete-this-directory.txt
 *.swp
 *.swo
 *.swn
+
+
+mongodb/

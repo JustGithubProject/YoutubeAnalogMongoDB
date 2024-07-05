@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("/user/{user_id}")
-def get_user_by_id(user_id: int, user_service: Annotated[UserService, Depends(get_user_service)]):
+def get_user_by_id(user_id: str, user_service: Annotated[UserService, Depends(get_user_service)]):
     return user_service.get_user_by_id(user_id)
 
 
