@@ -10,6 +10,10 @@ class UserModel(BaseModel):
     username: str
     email: str
     password: str
+
+
+class UserOut(UserModel):
+    id: str
     
     
 class UserLogin(BaseModel):
@@ -17,12 +21,10 @@ class UserLogin(BaseModel):
     password: str
 
 
-class UserRegister(BaseModel):
-    username: str
-    password: str
-    email: str
-        
+class UserRegister(UserModel):
+    pass
 
+        
 class VideoModel(BaseModel):
     title: str
     user_id: str

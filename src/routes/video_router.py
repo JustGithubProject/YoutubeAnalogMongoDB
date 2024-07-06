@@ -1,4 +1,5 @@
 from typing import Annotated
+from uuid import uuid4
 
 from fastapi import (
     APIRouter,
@@ -34,7 +35,7 @@ def get_all_videos(video_service: Annotated[VideoService, Depends(get_video_serv
 @router.post("/video/add", response_model=VideoModel)
 def create_video(video_model: VideoModel, video_service: Annotated[VideoService, Depends(get_video_service)]):
     result_video_model = video_model.dict()
-    result_video_model["id"] = generate_hash_based_on_string()
+    result_video_model["id"] = str(uuid4())
     video = Video(**result_video_model)
     video_service.create_video(video)
     return result_video_model

@@ -52,8 +52,8 @@ def login(user_model: UserLogin, user_service: Annotated[UserService, Depends(ge
             detail="Incorrect username or password"
         )
     return {
-        "access_token": create_access_token(user['username']),
-        "refresh_token": create_refresh_token(user['username']),
+        "access_token": create_access_token(user['username'], user["_id"]),
+        "refresh_token": create_refresh_token(user['username'], user["_id"]),
     }
 
 
@@ -68,7 +68,7 @@ def register(user_model: UserRegister, user_service: Annotated[UserService, Depe
             detail="User with this email already exist"
         )
     # Hashing the password
-    hashed_password = get_hashed_password(user.password)
+    hashed_password = get_hashed_password(user_model.password)
     
     # Getting dict of pydantic model
     dict_user_model = user_model.dict()

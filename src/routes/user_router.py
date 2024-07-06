@@ -1,4 +1,5 @@
 from typing import Annotated
+from uuid import uuid4
 
 from fastapi import (
     APIRouter,
@@ -33,7 +34,7 @@ def get_all_users(user_service: Annotated[UserService, Depends(get_user_service)
 @router.post("/user/add", response_model=UserModel)
 def create_user(user_model: UserModel, user_service: Annotated[UserService, Depends(get_user_service)]):
     result_user_model = user_model.dict()
-    result_user_model["id"] = generate_hash_based_on_string()
+    result_user_model["id"] = str(uuid4())
     user = User(**result_user_model)
     user_service.create_user(user)
     return result_user_model
