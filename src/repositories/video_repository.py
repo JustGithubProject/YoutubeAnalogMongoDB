@@ -28,7 +28,7 @@ class VideoRepository:
         """
         Find a video by their ID.
         """
-        return self.video_collection.find_one({"_id": ObjectId(video_id)})
+        return self.video_collection.find_one({"_id": str(video_id)})
     
     
     def find_by_title(self, title: str):
@@ -39,7 +39,7 @@ class VideoRepository:
     def update_video(self, video_id: str, new_video: Video):
         """Update a video's information"""
         result = self.video_collection.update_one(
-            {"_id": ObjectId(video_id)},
+            {"_id": str(video_id)},
             {"$set": new_video.to_dict()}
         )
         return result.modified_count > 0
@@ -47,14 +47,14 @@ class VideoRepository:
     
     def delete_video(self, video_id):
         """Remove video from database"""
-        result = self.video_collection.delete_one({"_id": ObjectId(video_id)})
+        result = self.video_collection.delete_one({"_id": str(video_id)})
         
     
     def add_comment(self, video_id: str, comment: Comment):
         """Add comment to video"""
         comment_data = comment.to_dict()
         result = self.video_collection.update_one(
-            {"_id": ObjectId(video_id)},
+            {"_id": str(video_id)},
             {"$push": {"comments": comment_data}}
         )
         return result.modified_count > 0

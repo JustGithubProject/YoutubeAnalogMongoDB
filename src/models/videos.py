@@ -36,14 +36,14 @@ class Video:
     def __init__(
         self,
         title: str,
-        _id: str,
+        id: str,
         user_id: str,
         video_path: str,
         description: str,
     ) -> None:
         self.db = connect_to_database()
         self.video_collection = self.db["videos"]
-        self._id = _id 
+        self._id = id 
         self.title = title
         self.user_id = user_id
         self.video_path = video_path

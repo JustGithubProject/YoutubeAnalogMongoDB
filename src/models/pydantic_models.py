@@ -7,14 +7,12 @@ from pydantic import (
 
 
 class UserModel(BaseModel):
-    id: str
     username: str
     email: str
     password: str
     
 
 class VideoModel(BaseModel):
-    id: str
     title: str
     user_id: str
     video_path: str
