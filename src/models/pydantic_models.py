@@ -11,6 +11,17 @@ class UserModel(BaseModel):
     email: str
     password: str
     
+    
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+
+class UserRegister(BaseModel):
+    username: str
+    password: str
+    email: str
+        
 
 class VideoModel(BaseModel):
     title: str
@@ -19,8 +30,6 @@ class VideoModel(BaseModel):
     description: str
 
 
-class UserLogin(BaseModel):
-    username: str
-    password: str
+
 
 
