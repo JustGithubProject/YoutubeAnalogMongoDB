@@ -11,7 +11,9 @@ from services.video_service import VideoService
 from models.videos import Video
 from models.pydantic_models import VideoModel
 from dependencies import get_video_service
-from utils import generate_hash_based_on_string
+
+from dependencies import get_current_user
+from models.users import User
 
 
 # Video router
@@ -33,7 +35,11 @@ def get_all_videos(video_service: Annotated[VideoService, Depends(get_video_serv
 
 
 @router.post("/video/add", response_model=VideoModel)
-def create_video(video_model: VideoModel, video_service: Annotated[VideoService, Depends(get_video_service)]):
+def create_video(
+    video_model: VideoModel,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    current_user: User = Depends(get_current_user),
+    ):
     result_video_model = video_model.dict()
     result_video_model["id"] = str(uuid4())
     video = Video(**result_video_model)
@@ -42,12 +48,21 @@ def create_video(video_model: VideoModel, video_service: Annotated[VideoService,
 
 
 @router.delete("/video/remove/{video_id}")
-def delete_video(video_id: str, video_service: Annotated[VideoService, Depends(get_video_service)]):
+def delete_video(
+    video_id: str,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    current_user: User = Depends(get_current_user),
+):
     return video_service.delete_video(video_id)
 
 
 @router.put("/video/update/{video_id}", response_model=VideoModel)
-def update_video(video_model: VideoModel, video_id: str, video_service: Annotated[VideoService, Depends(get_video_service)]):
+def update_video(
+    video_model: VideoModel,
+    video_id: str,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    current_user: User = Depends(get_current_user),
+):
     result_video_model = video_model.dict()
     result_video_model["id"] = video_id
     video = Video(**result_video_model)

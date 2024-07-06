@@ -10,13 +10,18 @@ from fastapi import (
 
 from models.pydantic_models import (
     UserLogin,
-    UserRegister
+    UserRegister,
+    UserOut
 )
 
 from models.users import User
 
 from services.user_service import UserService
-from dependencies import get_user_service
+
+from dependencies import (
+    get_user_service,
+    get_current_user
+)
 from auth.password_hashing import (
     verify_password,
     get_hashed_password
@@ -26,6 +31,7 @@ from auth.generate_jwt_token import (
     create_access_token,
     create_refresh_token
 )
+
 
 
 auth_router = APIRouter(
@@ -82,3 +88,8 @@ def register(user_model: UserRegister, user_service: Annotated[UserService, Depe
     user_service.create_user(user)
     
     return dict_user_model
+
+
+@auth_router.get("/me", response_model=UserOut)
+def get_me(current_user: User = Depends(get_current_user)):
+    return current_user
