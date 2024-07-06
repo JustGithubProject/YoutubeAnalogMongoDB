@@ -1,7 +1,14 @@
+import hashlib
+import random
+import string
+
 from datetime import datetime
 
 from config import connect_to_database
 
+def generate_string():
+    letters = string.ascii_letters
+    return "".join([random.choice(letters) for _ in range(10)])    
 
 
 class Comment:
@@ -36,14 +43,12 @@ class Video:
     def __init__(
         self,
         title: str,
-        id: str,
         user_id: str,
         video_path: str,
         description: str,
     ) -> None:
         self.db = connect_to_database()
-        self.video_collection = self.db["videos"]
-        self._id = id 
+        self.video_collection = self.db["videos"] 
         self.title = title
         self.user_id = user_id
         self.video_path = video_path
@@ -52,7 +57,7 @@ class Video:
     
     def to_dict(self) -> dict:
         return {
-            "_id": self._id,
+            "_id": hashlib.sha256(str(generate_string()).encode()).hexdigest(),
             "title": self.title,
             "user_id": self.user_id,
             "video_path": self.video_path,
