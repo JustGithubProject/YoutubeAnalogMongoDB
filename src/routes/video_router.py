@@ -8,7 +8,10 @@ from fastapi import (
 from fastapi.responses import JSONResponse
 
 from services.video_service import VideoService
-from models.videos import Video
+from models.videos import (
+    Video,
+    Comment
+)
 from models.pydantic_models import VideoModel
 from dependencies import get_video_service
 
@@ -42,6 +45,7 @@ def create_video(
     ):
     result_video_model = video_model.dict()
     result_video_model["id"] = str(uuid4())
+    result_video_model["user_id"] = str(current_user["_id"])
     video = Video(**result_video_model)
     video_service.create_video(video)
     return result_video_model
@@ -68,3 +72,16 @@ def update_video(
     video = Video(**result_video_model)
     video_service.update_video(video_id, video)
     return result_video_model
+
+
+
+@router.post("/video/add/comment/{video_id}")
+def create_comment(
+    video_id: str,
+    comment: str,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    current_user: User = Depends(get_current_user),
+):
+    comment_model = Comment(current_user["_id"], video_id, current_user["username"], comment)
+    video_service.add_comment_to_video(video_id, comment_model)
+    return comment_model.to_dict()

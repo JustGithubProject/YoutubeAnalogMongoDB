@@ -8,6 +8,8 @@ from fastapi import (
     status
 )
 
+from fastapi.security import OAuth2PasswordRequestForm
+
 from models.pydantic_models import (
     UserLogin,
     UserRegister,
@@ -44,17 +46,20 @@ auth_router = APIRouter(
 
 
 @auth_router.post("/login")
-def login(user_model: UserLogin, user_service: Annotated[UserService, Depends(get_user_service)]):
-    user = user_service.get_user_by_username(user_model.username)
+def login(
+    user_service: Annotated[UserService, Depends(get_user_service)],
+    form_data: OAuth2PasswordRequestForm = Depends()
+    ):
+    user = user_service.get_user_by_username(form_data.username)
     
     # If user doesn't exist, throw an exception
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Incorrect username or password"
+            detail="Incorrect username or password" 
         )
     hashed_password = user["password"]
-    if not verify_password(user_model.password, hashed_password):
+    if not verify_password(form_data.password, hashed_password):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Incorrect username or password"

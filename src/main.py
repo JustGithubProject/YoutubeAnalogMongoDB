@@ -8,6 +8,7 @@ from routes import (
 
 from config import create_database_and_collections
 
+
 app = FastAPI(
     title="YoutubeAnalogAPI"
 )

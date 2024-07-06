@@ -26,10 +26,7 @@ from config import (
 )
 
 
-reuseable_oauth = OAuth2PasswordBearer(
-    tokenUrl="/auth/login",
-    scheme_name="JWT"
-)
+reuseable_oauth = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
 def get_current_user(token: str = Depends(reuseable_oauth)):
@@ -53,7 +50,7 @@ def get_current_user(token: str = Depends(reuseable_oauth)):
         )
         
     user_service = get_user_service()
-    user = user_service.find_by_username(token_data.name, None)
+    user = user_service.get_user_by_username(token_data.username)
     
     
     if user is None:
@@ -62,7 +59,7 @@ def get_current_user(token: str = Depends(reuseable_oauth)):
             detail="Could not find user",
         )
     
-    return UserOut(**user)
+    return user
 
 
 def get_user_service():
