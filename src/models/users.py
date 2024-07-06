@@ -7,14 +7,14 @@ class User:
         email: str,
         password: str
     ) -> None:
-        self.id = id
+        self._id = id
         self.username = username
         self.email = email
         self.password = password
     
     def to_dict(self) -> dict:
         return {
-            "id": self.id,
+            "_id": self._id,
             "username": self.username,
             "email": self.email,
             "password": self.password

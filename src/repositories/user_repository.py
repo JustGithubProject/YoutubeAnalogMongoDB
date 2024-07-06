@@ -26,7 +26,7 @@ class UserRepository:
         """
         Find a user by their ID.
         """
-        return self.user_collection.find_one({"_id": str(ObjectId(user_id))})
+        return self.user_collection.find_one({"_id": str(user_id)})
     
     
     def find_by_username(self, username: str):
@@ -41,7 +41,7 @@ class UserRepository:
         Update a user's information.
         """
         result = self.user_collection.update_one(
-            {"_id": str(ObjectId(user_id))},
+            {"_id": str(user_id)},
             {"$set": new_user.to_dict()}
         )
         return result.modified_count > 0
@@ -49,7 +49,7 @@ class UserRepository:
     
     def delete_user(self, user_id: str):
         """Remove user from database"""
-        result = self.user_collection.delete_one({"_id": str(ObjectId(user_id))})
+        result = self.user_collection.delete_one({"_id": str(user_id)})
         return result.deleted_count > 0
     
     
