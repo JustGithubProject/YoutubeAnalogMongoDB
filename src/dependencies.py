@@ -27,7 +27,7 @@ from config import (
 
 
 reuseable_oauth = OAuth2PasswordBearer(
-    tokenUrl="/login",
+    tokenUrl="/auth/login",
     scheme_name="JWT"
 )
 

@@ -32,6 +32,8 @@ from auth.generate_jwt_token import (
     create_refresh_token
 )
 
+from auth.schemas import Token
+
 
 
 auth_router = APIRouter(

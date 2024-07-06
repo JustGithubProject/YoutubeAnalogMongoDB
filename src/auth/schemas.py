@@ -9,4 +9,9 @@ class TokenSchema(BaseModel):
 class TokenPayload(BaseModel):
     sub: str = None
     exp: int = None
+    
+    
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
