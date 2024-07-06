@@ -11,6 +11,7 @@ from models.pydantic_models import UserModel
 from dependencies import get_user_service
 from utils import generate_hash_based_on_string
 
+
 # User router
 router = APIRouter(
     prefix="/users",
@@ -31,11 +32,11 @@ def get_all_users(user_service: Annotated[UserService, Depends(get_user_service)
 
 @router.post("/user/add", response_model=UserModel)
 def create_user(user_model: UserModel, user_service: Annotated[UserService, Depends(get_user_service)]):
-    result_user_model = user_model.model_copy()
+    result_user_model = user_model.dict()
     result_user_model["id"] = generate_hash_based_on_string()
-    user = User(**result_user_model.dict())
+    user = User(**result_user_model)
     user_service.create_user(user)
-    return user_model
+    return result_user_model
 
 
 @router.delete("/user/remove/{user_id}")
@@ -45,9 +46,11 @@ def delete_user(user_id: str, user_service: Annotated[UserService, Depends(get_u
 
 @router.put("/user/update/{user_id}", response_model=UserModel)
 def update_user(user_model: UserModel, user_id: str, user_service: Annotated[UserService, Depends(get_user_service)]):
-    user = User(**user_model.dict())
+    result_user_model = user_model.dict()
+    result_user_model["id"] = user_id
+    user = User(**result_user_model)
     user_service.update_user(user_id, user)
-    return user_model
+    return result_user_model
     
 
     

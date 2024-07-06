@@ -42,13 +42,15 @@ class Video:
     """Model to interact with video collection"""
     def __init__(
         self,
+        id: str,
         title: str,
         user_id: str,
         video_path: str,
         description: str,
     ) -> None:
         self.db = connect_to_database()
-        self.video_collection = self.db["videos"] 
+        self.video_collection = self.db["videos"]
+        self._id = id 
         self.title = title
         self.user_id = user_id
         self.video_path = video_path
@@ -57,7 +59,7 @@ class Video:
     
     def to_dict(self) -> dict:
         return {
-            "_id": hashlib.sha256(str(generate_string()).encode()).hexdigest(),
+            "_id": self._id,
             "title": self.title,
             "user_id": self.user_id,
             "video_path": self.video_path,

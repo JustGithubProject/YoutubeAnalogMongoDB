@@ -17,6 +17,6 @@ class VideoModel(BaseModel):
     user_id: str
     video_path: str
     description: str
-    comments: list
-    
+
+
     
