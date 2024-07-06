@@ -19,4 +19,8 @@ class VideoModel(BaseModel):
     description: str
 
 
-    
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+
