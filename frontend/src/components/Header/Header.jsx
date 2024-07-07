@@ -41,6 +41,7 @@ const Header = () => {
                         <li><img src={notification} alt="notification"/></li>
                         <li><img src={addVideo} alt="addVideo"/></li>
                         <li><img src={profile} alt="Profile" /></li>
+                        <li>Logout</li>
                     </>
                    )}
                     
