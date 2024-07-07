@@ -9,11 +9,21 @@ const Login = ({ onToggle }) => {
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent the default form submission
 
+    const params = new URLSearchParams();
+    params.append('username', username);
+    params.append('password', password);
+
     try {
-      const response = await axios.post('http://backend:8000/auth/login', {
-        username,
-        password
-      });
+      const response = await axios.post(
+        'http://127.0.0.1:8000/auth/login',
+        params,
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
 
       const { access_token, refresh_token } = response.data;
 
@@ -25,7 +35,11 @@ const Login = ({ onToggle }) => {
       window.location.href = "/";
 
     } catch (error) {
-      console.error('Login failed:', error);
+      if (error.response) {
+        console.error('Login failed:', error.response.data);
+      } else {
+        console.error('Login failed:', error.message);
+      }
     }
   };
 

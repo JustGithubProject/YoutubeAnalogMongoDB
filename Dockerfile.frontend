@@ -4,5 +4,6 @@ WORKDIR /frontend
 COPY ./frontend/package*.json ./
 RUN npm install
 COPY ./frontend /frontend
-RUN npm start
 
+
+CMD ["npm", "start"]

@@ -10,13 +10,18 @@ const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        const accessToken = localStorage.getItem('accessToken');
+        const accessToken = localStorage.getItem('access_token');
         if (accessToken) {
             setIsAuthenticated(true);
         } else {
             setIsAuthenticated(false);
         }
     }, []);
+
+    const logoutUser = () =>{
+        localStorage.removeItem("access_token")
+        window.location.href = "/"
+    }
 
     return (
         <header className="header">
@@ -41,7 +46,7 @@ const Header = () => {
                         <li><img src={notification} alt="notification"/></li>
                         <li><img src={addVideo} alt="addVideo"/></li>
                         <li><img src={profile} alt="Profile" /></li>
-                        <li>Logout</li>
+                        <li><button onClick={logoutUser}>Logout</button></li>
                     </>
                    )}
                     

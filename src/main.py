@@ -20,9 +20,10 @@ app.include_router(auth_router.auth_router)
 
 
 origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://0.0.0.0:8000"
+    "http://localhost:3000",
+    "http://0.0.0.0:3000",
+    "http://172.21.0.4:3000",
+    "http://frontend:3000"
 ]
 
 app.add_middleware(
