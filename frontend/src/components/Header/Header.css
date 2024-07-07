@@ -11,7 +11,7 @@
 .logo img {
     height: 50px;
     width: auto;
-    filter: brightness(0) invert(1);
+
 }
 
 .search {
@@ -67,4 +67,21 @@
 
 .nav a:hover {
     color: #ddd;
+}
+
+
+.search .search-icon {
+    width: 20px; /* Размер иконки лупы */
+    height: 20px;
+    fill: white; /* Цвет иконки */
+    transition: all 0.3s ease;
+}
+
+.search .search-icon:hover {
+    fill: #ddd; /* Цвет при наведении */
+}
+
+
+.nav img {
+    max-width: 30px; 
 }
