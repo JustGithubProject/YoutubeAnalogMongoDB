@@ -10,7 +10,6 @@ const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        // Проверяем наличие токена в localStorage
         const accessToken = localStorage.getItem('accessToken');
         if (accessToken) {
             setIsAuthenticated(true);
