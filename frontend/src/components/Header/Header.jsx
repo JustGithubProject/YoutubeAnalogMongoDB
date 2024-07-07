@@ -33,7 +33,6 @@ const Header = () => {
                 <ul>
                     {!isAuthenticated && (
                         <>
-                            <li><a href="/register">Sign up</a></li>
                             <li><a href="/login">Sign in</a></li>
                         </>
                     )}
