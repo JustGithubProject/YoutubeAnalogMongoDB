@@ -11,7 +11,6 @@
 .logo img {
     height: 50px;
     width: auto;
-
 }
 
 .search {
@@ -69,19 +68,34 @@
     color: #ddd;
 }
 
-
 .search .search-icon {
-    width: 20px; /* Размер иконки лупы */
+    width: 20px;
     height: 20px;
-    fill: white; /* Цвет иконки */
+    fill: white;
     transition: all 0.3s ease;
 }
 
 .search .search-icon:hover {
-    fill: #ddd; /* Цвет при наведении */
+    fill: #ddd;
 }
-
 
 .nav img {
     max-width: 30px; 
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-button svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+.logout-button:hover svg {
+    fill: #ddd;
 }
