@@ -3,7 +3,10 @@ from uuid import uuid4
 
 from fastapi import (
     APIRouter,
-    Depends
+    Depends,
+    UploadFile,
+    File,
+    Form
 )
 from fastapi.responses import JSONResponse
 
@@ -17,6 +20,7 @@ from dependencies import get_video_service
 
 from dependencies import get_current_user
 from models.users import User
+from utils import save_file
 
 
 # Video router
@@ -39,16 +43,33 @@ def get_all_videos(video_service: Annotated[VideoService, Depends(get_video_serv
 
 @router.post("/video/add", response_model=VideoModel)
 def create_video(
-    video_model: VideoModel,
+    title: Annotated[str, Form()],
+    description: Annotated[str, Form()],
+    video_path: Annotated[UploadFile, File(...)],
     video_service: Annotated[VideoService, Depends(get_video_service)],
     current_user: User = Depends(get_current_user),
     ):
-    result_video_model = video_model.dict()
-    result_video_model["id"] = str(uuid4())
-    result_video_model["user_id"] = str(current_user["_id"])
-    video = Video(**result_video_model)
+    video_id = str(uuid4())
+    user_id = str(current_user._id)
+    
+    
+    # Saving a file that the user has selected
+    file_location = f"videos/{video_id}_{video_path.filename}"
+    path_to_file = save_file(file_location, video_path)
+    
+    
+    video_data = {
+        "title": title,
+        "user_id": user_id,
+        "description": description,
+        "video_path": path_to_file
+    }
+    
+    
+    video = Video(**video_data)
+    
     video_service.create_video(video)
-    return result_video_model
+    return video_data
 
 
 @router.delete("/video/remove/{video_id}")

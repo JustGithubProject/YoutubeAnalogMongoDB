@@ -18,11 +18,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .search input {
-    padding: 12px;
-    width: 300px;
+    padding: 12px 20px;
+    width: 400px;
     border: none;
     border-radius: 30px;
     background-color: #f2f2f2;
@@ -37,24 +38,34 @@
 }
 
 .search button {
-    padding: 12px 20px;
-    background-color: #4CAF50;
-    color: white;
+    position: absolute;
+    right: 10px;
+    background: none;
     border: none;
-    border-radius: 30px;
-    font-size: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     transition: background-color 0.3s ease;
 }
 
-.search button:hover {
-    background-color: #45a049;
+.search .search-icon {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+    transition: all 0.3s ease;
+}
+
+.search button:hover .search-icon {
+    fill: #007bff;
 }
 
 .nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .nav a {
@@ -68,19 +79,13 @@
     color: #ddd;
 }
 
-.search .search-icon {
-    width: 20px;
-    height: 20px;
-    fill: white;
-    transition: all 0.3s ease;
-}
-
-.search .search-icon:hover {
-    fill: #ddd;
-}
-
 .nav img {
-    max-width: 30px; 
+    max-width: 24px;
+}
+
+.nav li {
+    display: flex;
+    align-items: center;
 }
 
 .logout-button {
@@ -88,14 +93,27 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding: 0;
 }
 
 .logout-button svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: white;
 }
 
 .logout-button:hover svg {
     fill: #ddd;
+}
+
+.nav img.notification-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.nav img.add-video-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
 }

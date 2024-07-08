@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './AddVideo.css'; 
+import './AddVideo.css';
 
 const AddVideoForm = () => {
   const [formData, setFormData] = useState({
     title: '',
     user_id: 'never mind backend can handle it',
-    video_path: '',
+    video_path: null,
     description: ''
   });
 
@@ -15,30 +15,35 @@ const AddVideoForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, video_path: e.target.files[0] });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Получение access_token из localStorage
       const accessToken = localStorage.getItem('access_token');
 
-      // Если access_token не найден, можно предпринять необходимые действия
       if (!accessToken) {
         console.error('Отсутствует access_token в localStorage');
         return;
       }
 
-      // Отправка запроса с заголовком Authorization
-      const response = await axios.post('http://127.0.0.1:8000/video/video/add', formData, {
+      const formDataToSend = new FormData();
+      formDataToSend.append('title', formData.title);
+      formDataToSend.append('description', formData.description);
+      formDataToSend.append('video_path', formData.video_path);
+
+      const response = await axios.post('http://127.0.0.1:8000/video/video/add', formDataToSend, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         }
       });
 
       console.log('Response:', response.data);
-      // Дополнительная обработка успешного ответа здесь
       console.log('Видео успешно добавлено!');
-      window.location.href = "/"
+      window.location.href = "/";
     } catch (error) {
       console.error('Ошибка при добавлении видео:', error);
     }
@@ -59,10 +64,9 @@ const AddVideoForm = () => {
       <label>
         Путь к видео:
         <input
-          type="text"
+          type="file"
           name="video_path"
-          value={formData.video_path}
-          onChange={handleChange}
+          onChange={handleFileChange}
           required
         />
       </label>
