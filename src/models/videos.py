@@ -44,6 +44,7 @@ class Video:
         self,
         id: str,
         title: str,
+        preview_image_path: str,
         user_id: str,
         video_path: str,
         description: str,
@@ -52,6 +53,7 @@ class Video:
         self.video_collection = self.db["videos"]
         self._id = id 
         self.title = title
+        self.preview_image_path = preview_image_path
         self.user_id = user_id
         self.video_path = video_path
         self.description = description
@@ -63,6 +65,7 @@ class Video:
             "title": self.title,
             "user_id": self.user_id,
             "video_path": self.video_path,
+            "preview_image_path": self.preview_image_path,
             "description": self.description,
             "comments": []
         }

@@ -45,17 +45,22 @@ def get_all_videos(video_service: Annotated[VideoService, Depends(get_video_serv
 def create_video(
     title: Annotated[str, Form()],
     description: Annotated[str, Form()],
+    preview_image_path: Annotated[str, Form()],
     video_path: Annotated[UploadFile, File(...)],
     video_service: Annotated[VideoService, Depends(get_video_service)],
     current_user: User = Depends(get_current_user),
     ):
     video_id = str(uuid4())
     user_id = str(current_user["_id"])
+    preview_id = str(uuid4())
     
+    # Saving a video that the user has selected
+    video_location = f"videos/{video_id}_{video_path.filename}"
+    path_to_video = save_file(video_location, video_path)
     
-    # Saving a file that the user has selected
-    file_location = f"videos/{video_id}_{video_path.filename}"
-    path_to_file = save_file(file_location, video_path)
+    # Saving a preview image that user has selected
+    preview_location = f"videos/preview_images/{preview_id}_{preview_image_path.filename}"
+    path_to_preview = save_file(preview_location, preview_image_path)
     
     
     video_data = {
@@ -63,7 +68,8 @@ def create_video(
         "title": title,
         "user_id": user_id,
         "description": description,
-        "video_path": path_to_file
+        "video_path": path_to_video,
+        "preview_image_path": path_to_preview
     }
     
     
