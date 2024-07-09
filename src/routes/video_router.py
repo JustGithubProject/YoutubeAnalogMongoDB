@@ -45,7 +45,7 @@ def get_all_videos(video_service: Annotated[VideoService, Depends(get_video_serv
 def create_video(
     title: Annotated[str, Form()],
     description: Annotated[str, Form()],
-    preview_image_path: Annotated[str, Form()],
+    preview_image_path: Annotated[UploadFile, File()],
     video_path: Annotated[UploadFile, File(...)],
     video_service: Annotated[VideoService, Depends(get_video_service)],
     current_user: User = Depends(get_current_user),

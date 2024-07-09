@@ -7,6 +7,7 @@ const AddVideoForm = () => {
     title: '',
     user_id: 'never mind backend can handle it',
     video_path: null,
+    preview_image_path: null,
     description: ''
   });
 
@@ -17,6 +18,10 @@ const AddVideoForm = () => {
 
   const handleFileChange = (e) => {
     setFormData({ ...formData, video_path: e.target.files[0] });
+  };
+  
+  const handleFilePreviewImageChange = (e) => {
+    setFormData({...formData, preview_image_path: e.target.files[0]})
   };
 
   const handleSubmit = async (e) => {
@@ -33,6 +38,7 @@ const AddVideoForm = () => {
       formDataToSend.append('title', formData.title);
       formDataToSend.append('description', formData.description);
       formDataToSend.append('video_path', formData.video_path);
+      formDataToSend.append("preview_image_path", formData.preview_image_path)
 
       const response = await axios.post('http://127.0.0.1:8000/video/video/add', formDataToSend, {
         headers: {
@@ -67,6 +73,15 @@ const AddVideoForm = () => {
           type="file"
           name="video_path"
           onChange={handleFileChange}
+          required
+        />
+      </label>
+      <label>
+        Путь к preview image:
+        <input
+          type="file"
+          name="preview_image_path"
+          onChange={handleFilePreviewImageChange}
           required
         />
       </label>

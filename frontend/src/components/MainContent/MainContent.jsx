@@ -13,7 +13,8 @@ const MainContent = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/video/all-videos?page=${page}`);
-        setVideos((prevVideos) => [...prevVideos, ...response.data]);
+        const newVideos = response.data.filter(video => !videos.some(existingVideo => existingVideo.id === video.id));
+        setVideos((prevVideos) => [...prevVideos, ...newVideos]);
         if (response.data.length === 0) {
           setHasMore(false);
         }

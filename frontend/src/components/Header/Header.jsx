@@ -48,9 +48,7 @@ const Header = () => {
                     )}
                     {isAuthenticated && (
                         <>
-                            <li><img src={notification} alt="notification" /></li>
                             <li>
-                                <img src={addVideo} alt="addVideo" />
                                 <a href="/create/video">Создать видео</a>
                             </li>
                             <li>{username}</li>
