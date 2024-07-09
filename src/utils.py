@@ -17,7 +17,7 @@ def generate_hash_based_on_string():
 
 def save_file(file_location: str, video_path):
     root_directory = os.path.abspath(".")
-    path_to_file = os.path.join(root_directory, file_location)
+    path_to_file = os.path.join(root_directory, "src", file_location)
     with open(path_to_file, "wb+") as file:
         shutil.copyfileobj(video_path.file, file)
     return path_to_file

@@ -50,7 +50,7 @@ def create_video(
     current_user: User = Depends(get_current_user),
     ):
     video_id = str(uuid4())
-    user_id = str(current_user._id)
+    user_id = str(current_user["_id"])
     
     
     # Saving a file that the user has selected
@@ -59,6 +59,7 @@ def create_video(
     
     
     video_data = {
+        "id": video_id,
         "title": title,
         "user_id": user_id,
         "description": description,
