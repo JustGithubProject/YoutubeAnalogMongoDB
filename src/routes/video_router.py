@@ -61,25 +61,18 @@ def create_video(
     video_bytes = video_path.file.read()
     
     # Save preview image
-    preview_image_filename = f"{uuid4()}_{preview_image_path.filename}"
-    new_preview_image_path = os.path.join("/app/uploads", preview_image_filename)
-    with open(new_preview_image_path, "wb") as file:
-        file.write(preview_image_bytes)
+    preview_full_path = save_file(preview_image_path, preview_image_bytes)
       
     # Save video file
-    video_filename = f"{uuid4()}_{video_path.filename}"
-    new_video_path = os.path.join("/app/uploads", video_filename)
-    with open(new_video_path, "wb") as file:
-        file.write(video_bytes)  
-    
+    video_full_path = save_file(video_path, video_bytes)
     
     video_data = {
         "id": video_id,
         "title": title,
         "user_id": user_id,
         "description": description,
-        "video_path": new_video_path,
-        "preview_image_path": new_preview_image_path
+        "video_path": video_full_path,
+        "preview_image_path": preview_full_path
     }
     
     video = Video(**video_data)

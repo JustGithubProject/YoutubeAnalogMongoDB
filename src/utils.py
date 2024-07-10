@@ -4,6 +4,8 @@ import random
 import shutil
 import os
 
+from uuid import uuid4
+
 
 def generate_string():
     letters = string.ascii_letters
@@ -15,9 +17,12 @@ def generate_hash_based_on_string():
     return hashlib.sha256(generated_string.encode()).hexdigest()
 
 
-def save_file(file_location: str, video_path):
-    root_directory = os.path.abspath(".")
-    path_to_file = os.path.join(root_directory, "src", file_location)
-    with open(path_to_file, "wb+") as file:
-        shutil.copyfileobj(video_path.file, file)
-    return path_to_file
+
+def save_file(object_path, file_bytes):
+    filename = f"{uuid4()}_{object_path.filename}"
+    full_path = os.path.join("/app/uploads", filename)
+    with open(full_path, "wb") as file:
+        file.write(file_bytes)
+    return full_path
+         
+    
