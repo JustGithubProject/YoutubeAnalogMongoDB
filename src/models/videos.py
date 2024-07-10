@@ -44,18 +44,18 @@ class Video:
         self,
         id: str,
         title: str,
-        preview_image: bytes,
+        preview_image_path: str,
         user_id: str,
-        video: bytes,
+        video_path: str,
         description: str,
     ) -> None:
         self.db = connect_to_database()
         self.video_collection = self.db["videos"]
         self._id = id 
         self.title = title
-        self.preview_image = preview_image
+        self.preview_image_path = preview_image_path
         self.user_id = user_id
-        self.video = video
+        self.video_path = video_path
         self.description = description
     
     
@@ -64,8 +64,8 @@ class Video:
             "_id": self._id,
             "title": self.title,
             "user_id": self.user_id,
-            "video": self.video,
-            "preview_image": self.preview_image,
+            "video_path": self.video_path,
+            "preview_image_path": self.preview_image_path,
             "description": self.description,
             "comments": []
         }

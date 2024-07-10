@@ -11,6 +11,8 @@ services:
       - .env
     depends_on:
       - mongodb
+    volumes:
+      - uploads:/app/uploads
     networks:
       - my-network
   
@@ -22,6 +24,8 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    volumes:
+      - uploads:/app/uploads
     networks:
       - my-network
 
@@ -36,6 +40,11 @@ services:
       - ~/data:/data/db
     networks:
       - my-network
+
+
+volumes:
+  uploads:
+
 
 networks:
   my-network:
