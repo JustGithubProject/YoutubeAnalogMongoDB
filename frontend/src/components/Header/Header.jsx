@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import logo from "./images/new_logo.png";
-import notification from "./images/notification.png";
-import addVideo from "./images/ipad.png";
 import { ReactComponent as SearchIcon } from './glass.svg';
 import { ReactComponent as LogoutIcon } from './logout.svg'; 
 import * as jwtDecodeModule from 'jwt-decode';

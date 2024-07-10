@@ -54,24 +54,20 @@ def create_video(
     user_id = str(current_user["_id"])
     preview_id = str(uuid4())
     
-    # Saving a video that the user has selected
-    video_location = f"videos/{video_id}_{video_path.filename}"
-    path_to_video = save_file(video_location, video_path)
+    # Getting bytes
+    preview_image_bytes = preview_image_path.file.read()
+    video_bytes = video_path.file.read()
     
-    # Saving a preview image that user has selected
-    preview_location = f"videos/preview_images/{preview_id}_{preview_image_path.filename}"
-    path_to_preview = save_file(preview_location, preview_image_path)
-    
+        
     
     video_data = {
         "id": video_id,
         "title": title,
         "user_id": user_id,
         "description": description,
-        "video_path": path_to_video,
-        "preview_image_path": path_to_preview
+        "video": video_bytes,
+        "preview_image": preview_image_bytes
     }
-    
     
     video = Video(**video_data)
     
