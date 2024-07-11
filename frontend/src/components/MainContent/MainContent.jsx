@@ -24,7 +24,7 @@ const MainContent = () => {
     };
 
     fetchVideos();
-  }, [page]);
+  }, [page, videos]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,7 +46,7 @@ const MainContent = () => {
         observer.unobserve(currentLoaderRef);
       }
     };
-  }, [hasMore]);
+  }, [hasMore, videos]);
 
   const chunkArray = (array, chunkSize) => {
     const chunks = [];
