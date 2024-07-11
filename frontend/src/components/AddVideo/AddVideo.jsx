@@ -37,8 +37,8 @@ const AddVideoForm = () => {
       const formDataToSend = new FormData();
       formDataToSend.append('title', formData.title);
       formDataToSend.append('description', formData.description);
-      formDataToSend.append('video_path', formData.video);
-      formDataToSend.append("preview_image_path", formData.preview_image)
+      formDataToSend.append('video_path', formData.video_path);
+      formDataToSend.append("preview_image_path", formData.preview_image_path)
 
       const response = await axios.post('http://127.0.0.1:8000/video/video/add', formDataToSend, {
         headers: {

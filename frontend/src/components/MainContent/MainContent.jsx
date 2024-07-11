@@ -61,7 +61,7 @@ const MainContent = () => {
   return (
     <div className="main-content">
       {videoChunks.map((chunk, index) => (
-        <div key={index} className="video-row">
+        <div key={`chunk-${index}`} className="video-row">
           {chunk.map((video) => (
             <VideoCard key={video.id} video={video} />
           ))}
