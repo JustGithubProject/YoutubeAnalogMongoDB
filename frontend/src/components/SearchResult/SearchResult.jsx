@@ -10,7 +10,7 @@ const SearchResult = () => {
         const title = params.get('title');
 
         if (title) {
-            fetch(`http://127.0.0.1:8000/video/video/search/${title}`)
+            fetch(`http://127.0.0.1:8000/video/video/search/?video_title_query=${title}`)
                 .then(response => response.json())
                 .then(data => {
                     setVideos(data);

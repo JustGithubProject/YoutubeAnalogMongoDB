@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import logo from "./images/new_logo.png";
-import { ReactComponent as SearchIcon } from './glass.svg';
 import { ReactComponent as LogoutIcon } from './logout.svg'; 
 import * as jwtDecodeModule from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +51,7 @@ const Header = () => {
                     style={{ width: '400px' }} 
                 />
                 <button onClick={searchVideos}>
-                    <SearchIcon className="search-icon" />
+                    Search
                 </button>
             </div>
             <nav className="nav">
