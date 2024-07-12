@@ -1,11 +1,15 @@
+/* MainContent.css */
 .main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .video-row {
-    display: flex;
-    gap: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px; 
+  background-color: #f9f9f9; 
+  border-radius: 10px; /* Закругленные углы */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+}
+
+.video-row {
+  display: flex;
+  gap: 20px;
+}
