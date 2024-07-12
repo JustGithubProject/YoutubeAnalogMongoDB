@@ -8,7 +8,8 @@ from fastapi import (
     Depends,
     UploadFile,
     File,
-    Form
+    Form,
+    Query
 )
 from fastapi.responses import JSONResponse
 
@@ -38,9 +39,11 @@ def get_video_by_id(video_id: str, video_service: Annotated[VideoService, Depend
     return video_service.get_video_by_id(video_id)
 
 
-@router.get("/video/search/{video_title}")
-def get_video_by_title(video_title: str, video_service: Annotated[VideoService, Depends(get_video_service)]):
-    return video_service.get_video_by_title(video_title)
+@router.get("/video/search/")
+def get_video_by_title(
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    video_title_query: str = Query(...)):
+    return video_service.get_video_by_title(video_title_query)
 
 
 @router.get("/all-videos")
