@@ -9,7 +9,7 @@ const MainContent = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/video/all-videos');
+        const response = await axios.get('http://127.0.0.1:8000/video/all-videos?limit=10');
         setVideos(response.data);
       } catch (error) {
         console.error("Error fetching videos:", error);
@@ -21,6 +21,7 @@ const MainContent = () => {
 
   return (
     <div className="main-content">
+      <h1 className="title">Популярные видео</h1>
       <div className="video-row">
         {videos.map((video) => (
           <VideoCard key={video.id} video={video} />

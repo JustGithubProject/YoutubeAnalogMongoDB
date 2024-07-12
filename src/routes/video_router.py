@@ -38,6 +38,11 @@ def get_video_by_id(video_id: str, video_service: Annotated[VideoService, Depend
     return video_service.get_video_by_id(video_id)
 
 
+@router.get("/video/search/{video_title}")
+def get_video_by_title(video_title: str, video_service: Annotated[VideoService, Depends(get_video_service)]):
+    return video_service.get_video_by_title(video_title)
+
+
 @router.get("/all-videos")
 def get_all_videos(video_service: Annotated[VideoService, Depends(get_video_service)]):
     return video_service.get_all_videos()
