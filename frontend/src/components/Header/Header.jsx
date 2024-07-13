@@ -48,7 +48,6 @@ const Header = () => {
                     placeholder="Search..." 
                     value={searchQuery} 
                     onChange={handleSearchChange} 
-                    style={{ width: '400px' }} 
                 />
                 <button onClick={searchVideos}>
                     Search

@@ -6,6 +6,7 @@
     background-color: #333;
     color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .logo img {
@@ -18,14 +19,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 .search input {
     padding: 12px 20px;
-    width: 400px;
+    width: 350px;
     border: none;
-    border-radius: 30px;
+    border-radius: 30px 0 0 30px;
     background-color: #f2f2f2;
     font-size: 16px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -38,27 +38,20 @@
 }
 
 .search button {
-    position: absolute;
-    right: 10px;
-    background: none;
+    padding: 12px 20px;
     border: none;
+    border-radius: 0 30px 30px 0;
+    background-color: white;
+    color: #333;
+    font-size: 16px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: background-color 0.3s ease;
-}
-
-.search .search-icon {
-    width: 24px;
-    height: 24px;
-    fill: #333;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
     transition: all 0.3s ease;
 }
 
-.search button:hover .search-icon {
-    fill: #007bff;
+.search button:hover {
+    background-color: #f2f2f2;
 }
 
 .nav ul {
@@ -77,10 +70,6 @@
 
 .nav a:hover {
     color: #ddd;
-}
-
-.nav img {
-    max-width: 24px;
 }
 
 .nav li {
@@ -104,16 +93,4 @@
 
 .logout-button:hover svg {
     fill: #ddd;
-}
-
-.nav img.notification-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-}
-
-.nav img.add-video-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
 }

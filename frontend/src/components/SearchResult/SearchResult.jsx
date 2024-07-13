@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import VideoCard from '../VideoCard/VideoCard';
 
 const SearchResult = () => {
     const [videos, setVideos] = useState([]);
@@ -24,11 +25,11 @@ const SearchResult = () => {
     return (
         <div>
             <h1>Результаты поиска</h1>
-            <ul>
+            <div className="video-results">
                 {videos.map(video => (
-                    <li key={video.id}>{video.title}</li>
+                    <VideoCard key={video.id} video={video} /> 
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

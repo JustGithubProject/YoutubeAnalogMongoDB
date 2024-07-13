@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './MainContent.css';
 import VideoCard from '../VideoCard/VideoCard';
 import axios from 'axios';
+import Sidebar from '../Sidebar/Sidebar';
 
 const MainContent = () => {
   const [videos, setVideos] = useState([]);
@@ -20,12 +21,15 @@ const MainContent = () => {
   }, []);
 
   return (
-    <div className="main-content">
-      <h1 className="title">Популярные видео</h1>
-      <div className="video-row">
-        {videos.map((video) => (
-          <VideoCard key={video.id} video={video} />
-        ))}
+    <div className="app-container">
+      <Sidebar />
+      <div className="main-content">
+        <h1 className="title">Популярные видео</h1>
+        <div className="video-row">
+          {videos.map((video) => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -33,7 +33,9 @@ class VideoRepository:
     
     def find_by_title(self, title: str):
         """Find a video by their title"""
-        return self.video_collection.find_one({"title": title})
+        videos = list(self.video_collection.find({"title": {"$regex": f"^{title}"}}))
+        return videos
+        
     
     
     def update_video(self, video_id: str, new_video: Video):
