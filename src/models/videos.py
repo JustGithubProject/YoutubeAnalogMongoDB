@@ -33,7 +33,7 @@ class Comment:
             "user_id": self.user_id,
             "username": self.username,
             "comment": self.comment,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
         }
     
 
@@ -67,6 +67,8 @@ class Video:
             "video_path": self.video_path,
             "preview_image_path": self.preview_image_path,
             "description": self.description,
+            "views": 0,
+            "likes": 0,
             "comments": []
         }
     

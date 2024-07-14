@@ -3,10 +3,8 @@ import './Header.css';
 import logo from "./images/new_logo.png";
 import { ReactComponent as LogoutIcon } from './logout.svg'; 
 import * as jwtDecodeModule from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState("");
     const [searchQuery, setSearchQuery] = useState("");

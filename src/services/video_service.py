@@ -58,3 +58,12 @@ class VideoService:
     def get_all_videos(self):
         """Get all videos"""
         return self.video_repository.list_videos()
+
+    
+    def add_like(self, video_id):
+        """Add like to video"""
+        video = self.get_video_by_id(video_id)
+        video["likes"] += 1
+        self.video_repository.update_video_like(video_id, video)
+        
+        

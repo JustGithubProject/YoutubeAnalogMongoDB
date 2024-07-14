@@ -1,24 +1,28 @@
 /* MainContent.css */
 .app-container {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  padding: 20px;
 }
 
 .main-content {
   flex-grow: 1;
-  margin-left: 250px;
   padding: 40px;
   padding-top: 80px; 
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, background-color 0.3s;
-  max-width: 1200px;
-  margin: auto;
+  width: 100%;
+  max-width: 1600px;
+  margin: 20px;
 }
 
-
 .title {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: bold;
   color: #2c3e50;
   text-align: center;
@@ -30,7 +34,7 @@
 .title::after {
   content: '';
   display: block;
-  width: 50px;
+  width: 60px;
   height: 4px;
   background-color: #ff5722;
   margin: 10px auto 0;
@@ -39,7 +43,7 @@
 
 .video-row {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -57,7 +61,7 @@
 }
 
 .video-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
@@ -86,7 +90,7 @@
 }
 
 .video-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   margin: 10px 0 5px;
   color: #34495e;

@@ -17,7 +17,8 @@ class User:
             "_id": self._id,
             "username": self.username,
             "email": self.email,
-            "password": self.password
+            "password": self.password,
+            "liked": [] # (HERE) Store video_id 
         }
     
         

@@ -89,6 +89,7 @@ def create_video(
     return video_data
 
 
+
 @router.delete("/video/remove/{video_id}")
 def delete_video(
     video_id: str,
@@ -123,3 +124,16 @@ def create_comment(
     comment_model = Comment(current_user["_id"], video_id, current_user["username"], comment)
     video_service.add_comment_to_video(video_id, comment_model)
     return comment_model.to_dict()
+
+
+@router.post("/video/like/{video_id}")
+def increase_like(
+    video_id: str,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    current_user: User = Depends(get_current_user)
+):
+    video_service.add_like(video_id)
+    return "Successfully added"
+    
+    
+    

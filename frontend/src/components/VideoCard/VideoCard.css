@@ -3,43 +3,25 @@
   text-decoration: none;
   color: inherit;
   width: 360px;
-  border: 1px solid #e3e3e3;
-  border-radius: 12px;
+  border: none; /* Убираем стандартную рамку */
+  border-radius: 20px;
   overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s, transform 0.3s;
   margin: 20px;
   position: relative;
-  overflow: hidden; /* Обрезка для аккуратного эффекта */
 }
 
 .video-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transform: translateY(-3px);
-}
-
-.video-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.8); /* Легкий фон при наведении */
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.video-card:hover::after {
-  opacity: 1; /* Показать фон при наведении */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
 }
 
 .video-thumbnail {
   width: 100%;
   height: 200px;
   overflow: hidden;
-  border-radius: 12px 12px 0 0; /* Закругленные углы сверху */
   position: relative;
 }
 
@@ -51,37 +33,37 @@
 }
 
 .video-thumbnail:hover .preview-image {
-  transform: scale(1.05); /* Увеличение изображения при наведении */
+  transform: scale(1.1); /* Больше увеличение для более сильного эффекта */
 }
 
 .video-info {
-  padding: 15px;
-  text-align: center; /* Выравнивание текста по центру */
+  padding: 20px;
+  text-align: center;
 }
 
 .video-title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
-  margin: 10px 0 5px;
-  color: #333;
+  margin: 15px 0 10px;
+  color: #2c3e50;
   transition: color 0.3s;
 }
 
 .video-title:hover {
-  color: #ff5722; /* Цвет заголовка при наведении */
+  color: #e74c3c; /* Более яркий цвет при наведении */
 }
 
 .video-description {
-  font-size: 14px;
-  color: #606060;
+  font-size: 16px;
+  color: #7f8c8d;
   line-height: 1.5;
-  max-height: 60px; /* Ограничение высоты описания */
+  max-height: 70px;
   overflow: hidden;
-  text-overflow: ellipsis; /* Обрезка текста */
-  white-space: nowrap; /* Обрезка текста на одной строке */
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .video-description:hover {
-  color: #2980b9; /* Цвет описания при наведении */
+  color: #3498db; 
   cursor: pointer;
 }
