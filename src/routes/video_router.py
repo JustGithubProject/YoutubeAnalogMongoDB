@@ -136,4 +136,12 @@ def increase_like(
     return "Successfully added"
     
     
+@router.post("/video/view/{video_id}")
+def increase_view(
+    video_id: str,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    current_user: User = Depends(get_current_user)
+):
+    video_service.add_view(video_id)
+    return "Successfully added"
     

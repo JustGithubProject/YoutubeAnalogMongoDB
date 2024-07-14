@@ -46,7 +46,7 @@ class VideoRepository:
         )
         return result.modified_count > 0
     
-    def update_video_like(self, video_id: str, video_dict: dict):
+    def update_video_likes_or_views(self, video_id: str, video_dict: dict):
         """Update amount of likes"""
         self.video_collection.update_one(
             {"_id": str(video_id)},
