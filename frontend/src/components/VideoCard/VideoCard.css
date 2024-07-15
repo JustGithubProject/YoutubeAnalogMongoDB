@@ -67,3 +67,23 @@
   color: #3498db; 
   cursor: pointer;
 }
+
+.video-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.video-views,
+.video-likes {
+  display: flex;
+  align-items: center;
+  color: #2c3e50;
+}
+
+.video-views svg,
+.video-likes svg {
+  margin-right: 5px;
+  color: #3498db;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './VideoCard.css';
 import axios from 'axios';
+import { FaThumbsUp, FaEye } from 'react-icons/fa'; 
 
 const VideoCard = ({ video }) => {
   const pathToImage = `http://127.0.0.1:8080${video.preview_image_path}`;
@@ -35,8 +36,10 @@ const VideoCard = ({ video }) => {
       <div className="video-info">
         <h3 className="video-title">{video.title}</h3>
         <p className="video-description">{video.description}</p>
-        <p>{video.views} views</p>
-        <p>{video.likes} likes</p>
+        <div className="video-stats">
+          <span className="video-views"><FaEye /> {video.views}</span>
+          <span className="video-likes"><FaThumbsUp /> {video.likes}</span>
+        </div>
       </div>
     </a>
   );
