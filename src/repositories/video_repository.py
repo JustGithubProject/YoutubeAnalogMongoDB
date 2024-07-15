@@ -37,7 +37,6 @@ class VideoRepository:
         return videos
         
     
-    
     def update_video(self, video_id: str, new_video: Video):
         """Update a video's information"""
         result = self.video_collection.update_one(
@@ -45,6 +44,7 @@ class VideoRepository:
             {"$set": new_video.to_dict()}
         )
         return result.modified_count > 0
+    
     
     def update_video_likes_or_views(self, video_id: str, video_dict: dict):
         """Update amount of likes"""

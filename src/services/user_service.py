@@ -38,6 +38,12 @@ class UserService:
         return self.user_repository.update_user(user_id, new_user_data)
     
     
+    def update_user_liked_video(self, user_id: str, user_dict: dict):
+        """Update liked video of current_user"""
+        return self.user_repository.update_user_liked_video(user_id, user_dict)
+        
+    
+    
     def delete_user(self, user_id: str):
         """
         Delete a user by their ID.

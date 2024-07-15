@@ -14,6 +14,7 @@ from fastapi import (
 from fastapi.responses import JSONResponse
 
 from services.video_service import VideoService
+from services.user_service import UserService
 from models.videos import (
     Video,
     Comment
@@ -21,7 +22,10 @@ from models.videos import (
 from models.pydantic_models import VideoModel
 from dependencies import get_video_service
 
-from dependencies import get_current_user
+from dependencies import (
+    get_current_user,
+    get_user_service
+)
 from models.users import User
 from utils import save_file
 
@@ -130,8 +134,16 @@ def create_comment(
 def increase_like(
     video_id: str,
     video_service: Annotated[VideoService, Depends(get_video_service)],
+    user_service: Annotated[UserService, Depends(get_user_service)],
     current_user: User = Depends(get_current_user)
 ):
+    # Did the current user like this video?
+    if video_id in current_user["liked"]:
+        return "You already liked"
+    
+    # Adding video_id to list of current_user
+    current_user["liked"].append(video_id)
+    user_service.update_user_liked_video(current_user._id, current_user)
     video_service.add_like(video_id)
     return "Successfully added"
     

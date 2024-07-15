@@ -47,6 +47,14 @@ class UserRepository:
         return result.modified_count > 0
     
     
+    def update_user_liked_video(self, user_id: str, user_dict: dict):
+        """Update liked video of current_user"""
+        self.user_collection.update_one(
+            {"_id": str(user_id)},
+            {"$set": user_dict}
+        )
+    
+    
     def delete_user(self, user_id: str):
         """Remove user from database"""
         result = self.user_collection.delete_one({"_id": str(user_id)})
