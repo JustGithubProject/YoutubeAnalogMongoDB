@@ -143,7 +143,7 @@ def increase_like(
     
     # Adding video_id to list of current_user
     current_user["liked"].append(video_id)
-    user_service.update_user_liked_video(current_user._id, current_user)
+    user_service.update_user_liked_video(current_user["_id"], current_user)
     video_service.add_like(video_id)
     return "Successfully added"
     
@@ -152,7 +152,6 @@ def increase_like(
 def increase_view(
     video_id: str,
     video_service: Annotated[VideoService, Depends(get_video_service)],
-    current_user: User = Depends(get_current_user)
 ):
     video_service.add_view(video_id)
     return "Successfully added"
