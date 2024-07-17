@@ -66,6 +66,13 @@ class VideoService:
         video["likes"] += 1
         self.video_repository.update_video_likes_or_views(video_id, video)
         
+    
+    def minus_like(self, video_id):
+        """Put away like from video"""
+        video = self.get_video_by_id(video_id)
+        video["likes"] -= 1
+        self.video_repository.update_video_likes_or_views(video_id, video)
+                
         
     def add_view(self, video_id):
         """Add view to video"""

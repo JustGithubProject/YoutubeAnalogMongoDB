@@ -146,6 +146,22 @@ def increase_like(
     user_service.update_user_liked_video(current_user["_id"], current_user)
     video_service.add_like(video_id)
     return "Successfully added"
+
+
+@router.post("/video/put-away-like/{video_id}")
+def decrease_like(
+    video_id: str,
+    video_service: Annotated[VideoService, Depends(get_video_service)],
+    user_service: Annotated[UserService, Depends(get_user_service)],
+    current_user: User = Depends(get_current_user)
+):
+    if video_id in current_user["liked"]:
+        current_user["liked"].remove(video_id)
+        user_service.update_user_liked_video(current_user["_id"], current_user)
+        video_service.minus_like(video_id)
+        return "Success"
+    else:
+        return "Fail"
     
     
 @router.post("/video/view/{video_id}")
@@ -155,4 +171,5 @@ def increase_view(
 ):
     video_service.add_view(video_id)
     return "Successfully added"
-    
+
+

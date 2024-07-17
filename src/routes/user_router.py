@@ -26,6 +26,11 @@ def get_user_by_id(user_id: str, user_service: Annotated[UserService, Depends(ge
     return user_service.get_user_by_id(user_id)
 
 
+@router.get("/user/{username}")
+def get_user_by_username(username: str, user_service: Annotated[UserService, Depends(get_user_service)]):
+    return user_service.get_user_by_username(username)
+
+
 @router.get("/all-users")
 def get_all_users(user_service: Annotated[UserService, Depends(get_user_service)]):
     return user_service.get_all_users()

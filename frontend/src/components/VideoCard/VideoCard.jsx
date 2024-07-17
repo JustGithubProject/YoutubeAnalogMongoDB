@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './VideoCard.css';
 import axios from 'axios';
-import { FaThumbsUp, FaEye } from 'react-icons/fa'; 
+import { FaThumbsUp, FaEye } from 'react-icons/fa';
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, currentUser }) => {
   const [likes, setLikes] = useState(video.likes);
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    // Проверка, понравилось ли видео текущему пользователю
+    if (currentUser && currentUser.liked.includes(video._id)) {
+      setLiked(true);
+    }
+  }, [currentUser, video._id]);
 
   const pathToImage = `http://127.0.0.1:8080${video.preview_image_path}`;
   const videoUrl = `http://127.0.0.1:3000/watch?v=${video.video_path}`;
 
   const handleCardClick = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
   
     try {
       const access_token = localStorage.getItem('access_token');
-      await axios.post(`http://127.0.0.1:8000/video/video/view/${video._id}`)
+      await axios.post(`http://127.0.0.1:8000/video/video/view/${video._id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
       console.log('Successfully added');
       window.location.href = videoUrl;
     } catch (error) {
@@ -28,20 +40,26 @@ const VideoCard = ({ video }) => {
 
     try {
       const access_token = localStorage.getItem('access_token');
-      await axios.post(`http://127.0.0.1:8000/video/video/like/${video._id}`, {}, {
+      const url = liked
+        ? `http://127.0.0.1:8000/video/video/put-away-like/${video._id}`
+        : `http://127.0.0.1:8000/video/video/like/${video._id}`;
+
+      await axios.post(url, {}, {
         headers: {
-          Authorization: `Bearer ${access_token}`
-        }
+          Authorization: `Bearer ${access_token}`,
+        },
       });
-      console.log('Successfully liked');
-      setLikes(likes + 1);
+
+      setLiked(!liked);
+      setLikes(liked ? likes - 1 : likes + 1);
+      console.log(liked ? 'Successfully unliked' : 'Successfully liked');
     } catch (error) {
-      console.error('Error increasing like count:', error);
+      console.error('Error updating like count:', error);
     }
   };
 
   return (
-    <a href={videoUrl} className="video-card" onClick={handleCardClick}>
+    <div className="video-card" onClick={handleCardClick}>
       <div className="video-thumbnail">
         <img src={pathToImage} alt="Preview" className="preview-image" />
       </div>
@@ -51,11 +69,11 @@ const VideoCard = ({ video }) => {
         <div className="video-stats">
           <span className="video-views"><FaEye /> {video.views}</span>
           <button className="video-likes" onClick={handleLikeClick}>
-            <FaThumbsUp /> {likes}
+            <FaThumbsUp style={{ color: liked ? 'blue' : 'black' }} /> {likes}
           </button>
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 

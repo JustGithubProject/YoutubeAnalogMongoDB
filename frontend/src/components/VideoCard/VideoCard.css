@@ -1,3 +1,4 @@
+/* VideoCard.css */
 .video-card {
   display: block;
   text-decoration: none;
@@ -6,15 +7,15 @@
   border: none; /* Убираем стандартную рамку */
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #333; /* Темный фон */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s, transform 0.3s;
   margin: 20px;
   position: relative;
 }
 
 .video-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   transform: translateY(-10px);
 }
 
@@ -23,6 +24,7 @@
   height: 200px;
   overflow: hidden;
   position: relative;
+  border-bottom: 3px solid #2980b9;
 }
 
 .preview-image {
@@ -45,17 +47,17 @@
   font-size: 24px;
   font-weight: bold;
   margin: 15px 0 10px;
-  color: #2c3e50;
+  color: #e0e0e0; /* Светлый цвет текста */
   transition: color 0.3s;
 }
 
 .video-title:hover {
-  color: #e74c3c; /* Более яркий цвет при наведении */
+  color: #ff5722; /* Яркий цвет при наведении */
 }
 
 .video-description {
   font-size: 16px;
-  color: #7f8c8d;
+  color: #b0b0b0;
   line-height: 1.5;
   max-height: 70px;
   overflow: hidden;
@@ -64,7 +66,7 @@
 }
 
 .video-description:hover {
-  color: #3498db; 
+  color: #3498db;
   cursor: pointer;
 }
 
@@ -79,11 +81,35 @@
 .video-likes {
   display: flex;
   align-items: center;
-  color: #2c3e50;
+  color: #e0e0e0;
 }
 
 .video-views svg,
 .video-likes svg {
   margin-right: 5px;
   color: #3498db;
+}
+
+/* Новые стили для улучшения */
+.video-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid rgba(255, 87, 34, 0.5);
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.video-card:hover::before {
+  opacity: 1;
+}
+
+.video-likes {
+  color: #f1c40f; /* Цвет для контраста */
+  font-weight: bold;
 }
