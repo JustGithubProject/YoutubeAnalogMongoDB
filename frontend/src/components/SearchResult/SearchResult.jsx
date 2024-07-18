@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import VideoCard from '../VideoCard/VideoCard';
+import './SearchResult.css';
 
 const SearchResult = () => {
     const [videos, setVideos] = useState([]);
@@ -23,8 +24,8 @@ const SearchResult = () => {
     }, [location]);
 
     return (
-        <div>
-            <h1>Результаты поиска</h1>
+        <div className="search-result-container">
+            <h1 className="search-title">Результаты поиска</h1>
             <div className="video-results">
                 {videos.map(video => (
                     <VideoCard key={video.id} video={video} /> 
