@@ -5,17 +5,17 @@
   color: inherit;
   width: 360px;
   border: none; /* Убираем стандартную рамку */
-  border-radius: 20px;
+  border-radius: 15px;
   overflow: hidden;
-  background: #333; /* Темный фон */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: #2c2c2c; /* Темный фон */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   transition: box-shadow 0.3s, transform 0.3s;
   margin: 20px;
   position: relative;
 }
 
 .video-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
   transform: translateY(-10px);
 }
 
@@ -24,7 +24,7 @@
   height: 200px;
   overflow: hidden;
   position: relative;
-  border-bottom: 3px solid #2980b9;
+  border-bottom: 3px solid #ff5722; /* Цвет рамки снизу */
 }
 
 .preview-image {
@@ -35,7 +35,7 @@
 }
 
 .video-thumbnail:hover .preview-image {
-  transform: scale(1.1); /* Больше увеличение для более сильного эффекта */
+  transform: scale(1.1);
 }
 
 .video-info {
@@ -44,20 +44,20 @@
 }
 
 .video-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   margin: 15px 0 10px;
-  color: #e0e0e0; /* Светлый цвет текста */
+  color: #f5f5f5; /* Светлый цвет текста */
   transition: color 0.3s;
 }
 
 .video-title:hover {
-  color: #ff5722; /* Яркий цвет при наведении */
+  color: #ff9800; /* Яркий цвет при наведении */
 }
 
 .video-description {
   font-size: 16px;
-  color: #b0b0b0;
+  color: #bdbdbd;
   line-height: 1.5;
   max-height: 70px;
   overflow: hidden;
@@ -66,7 +66,7 @@
 }
 
 .video-description:hover {
-  color: #3498db;
+  color: #03a9f4;
   cursor: pointer;
 }
 
@@ -81,16 +81,15 @@
 .video-likes {
   display: flex;
   align-items: center;
-  color: #e0e0e0;
+  color: #f5f5f5;
 }
 
 .video-views svg,
 .video-likes svg {
   margin-right: 5px;
-  color: #3498db;
+  color: #03a9f4;
 }
 
-/* Новые стили для улучшения */
 .video-card::before {
   content: '';
   position: absolute;
@@ -110,6 +109,6 @@
 }
 
 .video-likes {
-  color: #f1c40f; /* Цвет для контраста */
+  color: #020202; /* Цвет для контраста */
   font-weight: bold;
 }

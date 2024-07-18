@@ -14,13 +14,19 @@ const MainContent = () => {
         const access_token = localStorage.getItem('access_token');
         if (access_token) {
           const decodedToken = jwtDecodeModule.jwtDecode(access_token);
-          const username = decodedToken.username; 
-          const response = await axios.get(`http://127.0.0.1:8000/users/user/${username}`, {
-            headers: {
-              Authorization: `Bearer ${access_token}`
-            }
-          });
-          setCurrentUser(response.data);
+          const currentTime = Date.now() / 1000;
+
+          if (decodedToken.exp < currentTime) {
+            localStorage.removeItem('access_token');
+          } else {
+            const username = decodedToken.username; 
+            const response = await axios.get(`http://127.0.0.1:8000/users/user/${username}`, {
+              headers: {
+                Authorization: `Bearer ${access_token}`
+              }
+            });
+            setCurrentUser(response.data);
+          }
         }
       } catch (error) {
         console.error("Error fetching current user:", error);
